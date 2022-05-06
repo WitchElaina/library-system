@@ -22,6 +22,7 @@ class Library(object):
         """create a new book and add to library"""
         new_book = book.Book(self.book_id_gen(), name, author, classify_id, publishing)
         self.books.append(new_book)
+        self.save()
 
     def del_book(self, ID):
         """delete a book in library by ID"""
@@ -35,14 +36,22 @@ class Library(object):
         """search book by """
         for i in self.books:
             if i.ID == ID:
-                return i
-        return None
+                return i.ID
+        return []
 
     def keyword_search(self, keyword, attribute):
         """search book by keyword"""
         ret = []  # result id list
         for i in self.books:
             if i.keyword_match(keyword)[attribute]:
+                ret.append(i.ID)
+        return ret
+
+    def filter(self, filter_index):
+        """filter book by class"""
+        ret = []
+        for i in self.books:
+            if i.classify_id == filter_index:
                 ret.append(i.ID)
         return ret
 
@@ -72,10 +81,9 @@ class Library(object):
 if __name__ == '__main__':
     libr = Library()
     libr.load()
-    print(libr.keyword_search('t1', 0))
-    print(libr.keyword_search('ms', 1))
-    print(libr.keyword_search('pub', 2))
-    libr.del_book(0)
-    print(libr.keyword_search('pub', 2))
-    print(libr.keyword_search('t', 0))
-    libr.save()
+    # print(libr.keyword_search('t1', 0))
+    # print(libr.keyword_search('ms', 1))
+    # print(libr.keyword_search('pub', 2))
+    # print(libr.keyword_search('pub', 2))
+    # print(libr.keyword_search('t', 0))
+    print(libr.filter(0))

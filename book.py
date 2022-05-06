@@ -2,7 +2,12 @@
 book
 """
 classify_dict = {
-    0: 'Undefined'
+    0: 'Undefined',
+    1: 'Literature',
+    2: 'Education',
+    3: 'Tool',
+    4: 'Cartoon',
+    5: 'Others'
 }
 
 class Book(object):
@@ -41,15 +46,15 @@ class Book(object):
         # return if match success in each item
         # example:
         #   [0,1,0]: name False, author True, publishing False
-        ret_truth_table = [False, False, False]
+        ret_truth_table = [False, False, False, False]
 
         # find author
         if self.name.find(keyword) != -1:
-            ret_truth_table[0] = True
-        if self.author.find(keyword) != -1:
             ret_truth_table[1] = True
-        if self.publishing.find(keyword) != -1:
+        if self.author.find(keyword) != -1:
             ret_truth_table[2] = True
+        if self.publishing.find(keyword) != -1:
+            ret_truth_table[3] = True
 
         return ret_truth_table
 

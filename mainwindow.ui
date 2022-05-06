@@ -59,9 +59,28 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_search">
+            <widget class="QCheckBox" name="checkBox_enable_filter">
              <property name="text">
-              <string>Search</string>
+              <string>Filter</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBox_filter_mode"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_8" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <widget class="QComboBox" name="comboBox_all_book"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_del">
+             <property name="text">
+              <string>Delete Book</string>
              </property>
             </widget>
            </item>
@@ -92,13 +111,6 @@
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_del">
-             <property name="text">
-              <string>Delete Book</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </item>
@@ -110,7 +122,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QTextBrowser" name="textBrowser_main_2"/>
+         <widget class="QTextBrowser" name="textBrowser_main_my"/>
         </item>
         <item>
          <widget class="QWidget" name="widget_4" native="true">
