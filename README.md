@@ -1,5 +1,9 @@
 # 图书管理系统
 
+[![wakatime](https://wakatime.com/badge/user/b2ca97db-bce2-4b9b-8588-23c0de16890a/project/06e00a62-5aee-4793-a460-947a0a659fb1.svg)](https://wakatime.com/badge/user/b2ca97db-bce2-4b9b-8588-23c0de16890a/project/06e00a62-5aee-4793-a460-947a0a659fb1)![](https://img.shields.io/badge/Python-3.10.2-3776ab?logo=python&logoColor=white)![](https://img.shields.io/badge/MacOS%2011.4-pass-green?logo=apple)![](https://img.shields.io/badge/Windows11-no%20test-yellow?logo=windows)
+
+USTB Python程序设计大作业
+
 ## 功能介绍
 
 ### 书籍管理
