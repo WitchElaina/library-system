@@ -49,22 +49,31 @@ class Library(object):
     def save(self):
         """save current data to json file"""
         # gen data dictionary
-        data_dict = {}
+        data_dict = {'id_gen': self.book_id, 'data':{}}
         for i in self.books:
-            data_dict[i.ID] = i.export_info()
+            data_dict['data'][i.ID] = i.export_info()
 
         # write to json
         data_json = json.dumps(data_dict)
         with open(file_dir + 'library.json', 'w+') as data_f:
             data_f.write(data_json)
 
+    def load(self):
+        """load data from library.json"""
+        with open(file_dir + 'library.json', 'r') as data_f:
+            data_dict = json.loads(data_f.read())
+        self.book_id = data_dict['id_gen']
+        data = data_dict['data']
+        for key_id in data:
+            new_book = book.Book(key_id, data[key_id]['name'], data[key_id]['author'], data[key_id]['classify_id'], data[key_id]['publishing'])
+            self.books.append(new_book)
+
 
 if __name__ == '__main__':
     libr = Library()
-    libr.add_book('test0', 'authorname', 0, 'pub')
-    libr.add_book('t1t', 'authorname', 0, 'pub')
-    print(libr.keyword_search('t', 0))
-    print(libr.keyword_search('aut', 1))
+    libr.load()
+    print(libr.keyword_search('t1', 0))
+    print(libr.keyword_search('ms', 1))
     print(libr.keyword_search('pub', 2))
     libr.del_book(0)
     print(libr.keyword_search('pub', 2))
