@@ -30,6 +30,12 @@ class Book(object):
         }
         return ret
 
+    def get_owner(self):
+        if self.owner_id == 0:
+            return 'None'
+        else:
+            return str(self.owner_id)
+
     def keyword_match(self, keyword):
         """match keyword in book info"""
         # return if match success in each item
@@ -47,9 +53,13 @@ class Book(object):
 
         return ret_truth_table
 
+    def show(self):
+        return str(self.ID)+'\t'+self.name+'\t'+self.author+'\t'+self.publishing+'\t'+classify_dict[self.classify_id]+'\t'+self.get_owner()
+
 
 
 if __name__ == '__main__':
     book = Book(1, 'test', 'authorname', 0, 'pub')
     print(book.export_info())
     print(book.keyword_match('te'))
+    print(book.show())
