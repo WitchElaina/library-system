@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>#/Users/msz/Projects/PythonHomework/library-system/library.py</OriginalElement>
+  <nodes>
+    <node x="0.0" y="713.0">library.Library</node>
+    <node x="102.0" y="0.0">typing.Hashable</node>
+    <node x="21.0" y="103.0">object</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="object" target="typing.Hashable" relationship="INTERFACE">
+      <point x="0.0" y="-280.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="library.Library" target="object" relationship="REALIZATION">
+      <point x="0.0" y="-181.0" />
+      <point x="0.0" y="280.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7799086757990867" showDependencies="false" x="180.5" y="537.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+</Diagram>
+
