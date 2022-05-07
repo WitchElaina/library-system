@@ -1,1 +1,1 @@
-{"id_gen": -1, "data": {}}
+{"id_gen": 5, "data": {"0": {"name": "Python", "author": "py", "classify_id": 2, "publishing": "pub01", "owner_id": "admin"}, "2": {"name": "CN-EN Dic", "author": "msz", "classify_id": 3, "publishing": "pub01", "owner_id": 0}, "3": {"name": "Witch Tour I", "author": "Elaina", "classify_id": 1, "publishing": "pub03", "owner_id": 0}, "4": {"name": "Witch Tour 2", "author": "Elaina", "classify_id": 1, "publishing": "pub03", "owner_id": 0}, "5": {"name": "Critus", "author": "yozi", "classify_id": 4, "publishing": "pub03", "owner_id": 0}}}
