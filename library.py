@@ -20,15 +20,20 @@ class Library(object):
 
     def add_book(self, name, author, classify_id, publishing):
         """create a new book and add to library"""
-        new_book = book.Book(self.book_id_gen(), name, author, classify_id, publishing)
-        self.books.append(new_book)
-        self.save()
+        try:
+            new_book = book.Book(self.book_id_gen(), name, author, classify_id, publishing)
+        except Exception as err:
+            raise err
+        else:
+            self.books.append(new_book)
+            self.save()
 
     def del_book(self, ID):
         """delete a book in library by ID"""
         for i in self.books:
             if i.ID == ID:
                 self.books.remove(i)
+                self.save()
                 return True
         return False
 
@@ -55,6 +60,31 @@ class Library(object):
                 ret.append(i.ID)
         return ret
 
+    def borrow_require(self, book_id):
+        for i in self.books:
+            if i.ID == book_id:
+                if i.owner_id == 0:
+                    return True
+                else:
+                    return False
+        return False
+
+    def borrow_book(self, own_id, book_id):
+        for i in self.books:
+            if i.ID == book_id:
+                i.owner_id = own_id
+                self.save()
+                return True
+        return False
+
+    def return_book(self, book_id):
+        for i in self.books:
+            if i.ID == book_id:
+                i.owner_id = 0
+                self.save()
+                return True
+        return False
+
     def save(self):
         """save current data to json file"""
         # gen data dictionary
@@ -75,6 +105,7 @@ class Library(object):
         data = data_dict['data']
         for key_id in data:
             new_book = book.Book(key_id, data[key_id]['name'], data[key_id]['author'], data[key_id]['classify_id'], data[key_id]['publishing'])
+            new_book.owner_id = data[key_id]['owner_id']
             self.books.append(new_book)
 
 

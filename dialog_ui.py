@@ -31,6 +31,7 @@ class Ui_Dialog(object):
         self.label_2.setObjectName("label_2")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_2)
         self.lineEdit_pwd = QtWidgets.QLineEdit(self.widget)
+        self.lineEdit_pwd.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_pwd.setObjectName("lineEdit_pwd")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.lineEdit_pwd)
         self.verticalLayout.addWidget(self.widget)

@@ -19,6 +19,8 @@ class Book(object):
     owner_id = 0
 
     def __init__(self, ID, name, author, classify_id, publishing):
+        if name == '' or author == '' or publishing == '':
+            raise Exception('Args Error')
         self.ID = ID
         self.name = name
         self.author = author

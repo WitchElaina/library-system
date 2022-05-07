@@ -66,6 +66,11 @@ class AccountList(object):
             acc_dict = json.loads(acc_json.read())
         return acc_dict
 
+    def save(self, acc_dict):
+        with open('account.json', 'w+') as acc_json:
+            acc_json.write(json.dumps(acc_dict))
+        return True
+
     def register(self, usr_name, usr_password, is_admin):
         acc_dict = self.load()
         if usr_name in acc_dict:
@@ -89,6 +94,20 @@ class AccountList(object):
                 return acc_dict[usr_name]
             else:
                 return False
+
+    def reload(self, usr_name):
+        acc_dict = self.load()
+        return acc_dict[usr_name]
+
+    def borrow_book(self, uid, book_id):
+        acc_dict = self.load()
+        acc_dict[uid]['books'].append(book_id)
+        self.save(acc_dict)
+
+    def return_book(self, uid, book_id):
+        acc_dict = self.load()
+        acc_dict[uid]['books'].remove(book_id)
+        self.save(acc_dict)
 
 if __name__ == "__main__":
     acl = AccountList()
