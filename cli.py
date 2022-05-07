@@ -2,10 +2,11 @@ import sys
 import os
 
 from PyQt5 import QtGui
-from PyQt5.QtWidgets import QMainWindow, QApplication, QDialog, QMessageBox, QLineEdit
+from PyQt5.QtWidgets import QMainWindow, QApplication, QDialog, QMessageBox, QLineEdit, QWidget
 from mainwindow_ui import Ui_MainWindow
 from dialog_ui import Ui_Dialog
 from add_dialog_ui import Ui_Add_Dialog
+from about_ui import Ui_About_Dialog
 
 import library
 import account
@@ -26,6 +27,16 @@ def file_judge():
     if not os.path.exists('library.json'):
         with open('account.json', 'w') as json_f:
             json_f.write('{}')
+
+class AboutGUI(QDialog, Ui_About_Dialog):
+    def __init__(self):
+        super(AboutGUI, self).__init__(parent=None)
+        self.setupUi(self)
+        self.setWindowTitle('About')
+        self.pix = QtGui.QPixmap('.'+os.sep+'others'+os.sep+'icon.png')
+        self.label_icon.setPixmap(self.pix)
+        self.label_icon.setScaledContents(True)
+
 
 
 class LoginGUI(QDialog, Ui_Dialog):
@@ -56,7 +67,6 @@ class LoginGUI(QDialog, Ui_Dialog):
         ret.append(self.lineEdit_pwd.text())
         ret.append(bool(self.checkBox_is_reg.checkState()))
         ret.append(bool(self.checkBox_is_admin.checkState()))
-        print(ret)
         return ret
 
 
@@ -89,6 +99,7 @@ class ClientGUI(QMainWindow, Ui_MainWindow):
         self.show_id = []
         for i in book.classify_dict:
             self.comboBox_filter_mode.addItem(book.classify_dict[i])
+        self.about_window = AboutGUI()
         # self.all_id = []
         # for i in self.library.books:
         #     self.all_id.append(i.id)
@@ -102,9 +113,14 @@ class ClientGUI(QMainWindow, Ui_MainWindow):
         self.pushButton_return.clicked.connect(self.return_book)
         self.comboBox_search_mode.currentIndexChanged.connect(self.search)
         self.pushButton_del.clicked.connect(self.del_book)
+        self.pushButton_about.clicked.connect(self.show_about)
+        self.pushButton_add_2.clicked.connect(self.closeEvent)
 
         # init app
         self.init()
+
+    def show_about(self):
+        self.about_window.show()
 
     def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
         show_msg('Exited')
@@ -290,4 +306,5 @@ if __name__ == '__main__':
     app = QApplication([])
     window = ClientGUI()
     window.show()
+
     sys.exit(app.exec_())

@@ -16,7 +16,7 @@ class Library(object):
     def book_id_gen(self):
         """gen book id start from 0"""
         self.book_id += 1
-        return self.book_id
+        return str(self.book_id)
 
     def add_book(self, name, author, classify_id, publishing):
         """create a new book and add to library"""
